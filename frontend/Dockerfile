@@ -1,8 +1,8 @@
 FROM node:alpine3.11
-WORKDIR /UR-backend
+WORKDIR /UR-frontend
 COPY package*.json .
 RUN npm install
 COPY . .
-EXPOSE 8080
+EXPOSE 3000
 ENTRYPOINT [ "npm", "run" ]
 CMD ["dev"]
