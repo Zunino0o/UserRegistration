@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { getPatientByEmail } from '../controller/login.controller.js';
+import { getUserByEmail } from '../controller/login.controller.js';
 
 const loginRoutes = Router();
 
-loginRoutes.route('/:email').get(getPatientByEmail);
+loginRoutes.route('/:email').get(getUserByEmail);
 
 export default loginRoutes;

@@ -5,14 +5,14 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     restart: unless-stopped
     volumes:
-      - ./dbinit/init.sql:/docker-entrypoint-initdb.d/0_init.sql
+      - ./backend/dbinit/init.sql:/docker-entrypoint-initdb.d/0_init.sql
       - $HOME/database:/var/lib/mysql
     ports:
       - 3306:3306
     expose:
       - 3306
     environment:
-      MYSQL_DATABASE: patientsdb
+      MYSQL_DATABASE: usersdb
       MYSQL_USER: admin
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
@@ -37,7 +37,7 @@ services:
       DB_PORT: 3306
       DB_USER: 'admin'
       DB_PASSWORD: 'password'
-      DB_NAME: patientsdb
+      DB_NAME: usersdb
       DB_CONNECTION_LIMIT: 20
       SERVICE_TAGS: prod
       SERVICE_NAME: nodeappservice

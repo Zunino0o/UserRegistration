@@ -1,11 +1,11 @@
-CREATE DATABASE IF NOT EXISTS patientsdb;
+CREATE DATABASE IF NOT EXISTS usersdb;
 
-USE patientsdb;
+USE usersdb;
 
-DROP TABLE IF EXISTS patients;
+DROP TABLE IF EXISTS users;
 
-CREATE TABLE patients (
-    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT, first_name VARCHAR(255) DEFAULT NULL, last_name VARCHAR(255) DEFAULT NULL, email VARCHAR(255) DEFAULT NULL, phone VARCHAR(255) DEFAULT NULL, address VARCHAR(255) DEFAULT NULL, diagnosis VARCHAR(255) DEFAULT NULL, image_url VARCHAR(255) DEFAULT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (id), CONSTRAINT UQ_Patients_Email UNIQUE (email)
+CREATE TABLE users (
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT, first_name VARCHAR(255) DEFAULT NULL, last_name VARCHAR(255) DEFAULT NULL, email VARCHAR(255) DEFAULT NULL, phone VARCHAR(255) DEFAULT NULL, address VARCHAR(255) DEFAULT NULL, diagnosis VARCHAR(255) DEFAULT NULL, image_url VARCHAR(255) DEFAULT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (id), CONSTRAINT UQ_Users_Email UNIQUE (email)
 );
 
 DELIMITER / /
@@ -16,13 +16,13 @@ CREATE PROCEDURE create_and_return(IN first_name VARCHAR
 diagnosis VARCHAR(255), IN image_url VARCHAR(255)) 
 BEGIN 
 	INSERT INTO
-	    patients (
+	    users (
 	        first_name, last_name, email, phone, address, diagnosis, image_url
 	    )
 	VALUES (
 	        first_name, last_name, email, phone, address, diagnosis, image_url
 	    );
-	SELECT * FROM patients WHERE id = LAST_INSERT_ID();
+	SELECT * FROM users WHERE id = LAST_INSERT_ID();
 END
 // 
 

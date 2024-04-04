@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 import Response from './domain/response.js';
 import HttpStatus from './utils/httpStatus.js';
 import logger from './utils/logger.js';
-import patientRoutes from './routes/patient.route.js';
+import userRoutes from './routes/user.route.js';
 import loginRoutes from './routes/login.route.js';
 
 dotenv.config();
@@ -15,7 +15,7 @@ app.use(cors({ origin: '*' }));
 app.use(express.json());
 
 app.use('/login', loginRoutes);
-app.use('/patients', patientRoutes);
+app.use('/users', userRoutes);
 
 app.get('/', (req, res) => {
   res.send(
