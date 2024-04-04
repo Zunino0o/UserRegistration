@@ -2,8 +2,8 @@ services:
   mysqldb:
     image: mysql:8.0
     container_name: mysqlcontainer
-    command: --default-authentication-plugin=mysql_native_password
-    restart: unless-stopped
+    command: --init-file /docker-entrypoint-initdb.d/0_init.sql
+    restart: always
     volumes:
       - ./backend/dbinit/init.sql:/docker-entrypoint-initdb.d/0_init.sql
       - $HOME/database:/var/lib/mysql
@@ -13,7 +13,7 @@ services:
       - 3306
     environment:
       MYSQL_DATABASE: usersdb
-      MYSQL_USER: admin
+      MYSQL_USER: root
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
       SERVICE_TAGS: prod
@@ -35,7 +35,7 @@ services:
     environment:
       DB_HOST: mysqldb
       DB_PORT: 3306
-      DB_USER: 'admin'
+      DB_USER: 'root'
       DB_PASSWORD: 'password'
       DB_NAME: usersdb
       DB_CONNECTION_LIMIT: 20

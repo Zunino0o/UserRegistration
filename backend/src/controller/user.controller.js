@@ -7,7 +7,7 @@ import HttpStatus from '../utils/httpStatus.js';
 export const getUsers = (req, res) => {
   logger.info(`${req.method} ${req.originalUrl}, fetching users.`);
   db.query(QUERY.GET_USERS, (err, result) => {
-    if (!result) {
+    if (!result || result.length === 0) {
       res
         .status(HttpStatus.OK.code)
         .send(
@@ -93,7 +93,7 @@ export const createUser = (req, res) => {
             new Response(
               HttpStatus.CREATED.code,
               HttpStatus.CREATED.status,
-              'user created successfully',
+              'User created successfully',
               { user }
             )
           );
