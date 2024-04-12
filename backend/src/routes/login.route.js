@@ -1,8 +1,8 @@
-import { Router } from 'express';
-import { getUserByEmail } from '../controller/login.controller.js';
+const { Router } = require('express');
+const { getUserByEmail } = require('../controller/login.controller.js');
 
-const loginRoutes = Router();
+const loginRouter = Router();
 
-loginRoutes.route('/:email').get(getUserByEmail);
+loginRouter.route('/:email').get(getUserByEmail);
 
-export default loginRoutes;
+export default loginRouter;

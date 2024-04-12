@@ -1,28 +1,28 @@
-import express from 'express';
-import ip from 'ip';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import Response from './domain/response.js';
-import HttpStatus from './utils/httpStatus.js';
-import logger from './utils/logger.js';
-import userRoutes from './routes/user.route.js';
-import loginRoutes from './routes/login.route.js';
+const express = require('express');
+const cors = require('cors');
+const dotenv = require('dotenv');
+const Response = require('./utils/response.js');
+const HttpStatus = require('./utils/httpStatus.js');
+const userRouter = require('./routes/user.route.js');
+const loginRouter = require('./routes/login.route.js');
 
 dotenv.config();
-const PORT = process.env.SERVER_PORT || 8080;
 const app = express();
 app.use(cors({ origin: '*' }));
 app.use(express.json());
 
-app.use('/login', loginRoutes);
-app.use('/users', userRoutes);
+// Routes
+app.use('/login', loginRouter);
+app.use('/users', userRouter);
 
+// Default route
 app.get('/', (req, res) => {
   res.send(
     new Response(HttpStatus.OK.code, HttpStatus.OK.status, 'Server is running')
   );
 });
 
+// Route not found
 app.all('*', (req, res) => {
   res
     .status(HttpStatus.NOT_FOUND.code)
@@ -35,6 +35,4 @@ app.all('*', (req, res) => {
     );
 });
 
-app.listen(PORT, () => {
-  logger.info(`Server running on http://${ip.address()}:${PORT}`);
-});
+module.exports = app;

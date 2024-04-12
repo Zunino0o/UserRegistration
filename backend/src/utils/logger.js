@@ -1,4 +1,4 @@
-import logger from 'pino';
+const logger = require('pino');
 
 const log = logger({
     base: { pid: false },

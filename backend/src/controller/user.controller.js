@@ -1,8 +1,8 @@
-import db from '../config/mysql.config.js';
-import Response from '../domain/response.js';
-import logger from '../utils/logger.js';
-import QUERY from '../query/user.query.js';
-import HttpStatus from '../utils/httpStatus.js';
+const db = require('../config/mysql.config.js');
+const Response = require('../utils/response.js');
+const logger = require('../utils/logger.js');
+const QUERY = require('../query/user.query.js');
+const HttpStatus = require('../utils/httpStatus.js');
 
 export const getUsers = (req, res) => {
   logger.info(`${req.method} ${req.originalUrl}, fetching users.`);
